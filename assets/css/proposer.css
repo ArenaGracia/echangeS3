@@ -1,0 +1,34 @@
+.text-gray {
+  color: #aaa;
+}
+
+.scroleo{
+  height: 12rem;
+  overflow: scroll;
+}
+.media{
+  height: 10rem;
+}
+.intro{
+  padding-block: 3rem;
+}
+.intro p{
+  color: gray;
+}
+h3{
+  text-align: center;
+}
+#reset{
+  background-color: red;
+  color: beige;
+}
+#submit{
+  background-color: green;
+  color: white;
+}
+#bouton{
+  padding-block: 3rem;
+}
+.etiquette{
+  margin-inline: 2rem;
+}
