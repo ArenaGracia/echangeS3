@@ -14,6 +14,17 @@
             return $result;
         }  
 
+        public function getByCat($idC){
+            $sql="SELECT o.* FROM Objet o WHERE idC=%d";
+            $sql=sprintf($sql,$idC);
+            $query=$this->db->query($sql);
+            $result=array();
+            foreach($query->result_array() as $row){
+                $result[]=$row;
+            }
+            return $result;
+        }  
+
         public function getOther($idU){
             $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE p.idU!=%d";
             $sql=sprintf($sql,$idU);

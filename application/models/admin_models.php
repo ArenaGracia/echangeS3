@@ -3,7 +3,6 @@
     class admin_models extends CI_Model{
         public function getOneAdmin(){
             $sql="SELECT*FROM SuperUtilisateur Limit 1";
-            $sql=sprintf($sql,$id);
             $query=$this->db->query($sql);
             $result=$query->row_array();
             return $result;
@@ -14,7 +13,7 @@
             $sql=sprintf($sql,$this->db->escape($email),$this->db->escape($mdp));
             $query=$this->db->query($sql);
             $result=$query->row_array();
-            // echo $sql;
+            echo $sql;
             return $result;
         }
         
