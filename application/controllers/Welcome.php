@@ -118,7 +118,7 @@ class Welcome extends CI_Controller {
 	public function suppObjet($idO=''){
 		$this->load->model('objet_models');
 		$this->objet_models->suppObjet($idO);
-		// redirect("welcome/listeObjetByUser");
+		redirect("welcome/listeObjetByUser");
 	}
 	public function historique(){
 		$this->load->model('objet_models');

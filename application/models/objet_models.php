@@ -115,9 +115,12 @@
             return $result;
         }
         public function suppObjet($idO){
-            $sql="DELETE FROM Objet WHERE idO=%d ON DELETE CASCADE";
+            $sql="DELETE FROM Objet WHERE idO=%d";
             $sql=sprintf($sql,$idO);
-            echo $sql;
+            $query=$this->db->query($sql);    
+            $sql="DELETE FROM Owners WHERE idO=%d";
+            $sql=sprintf($sql,$idO);
+            $query=$this->db->query($sql);
         }
 
         public function getByPourcentage($idUser,$idO,$pourcentage){
