@@ -13,7 +13,7 @@
                 <div class="card-footer text-center"><small><a href="#"><i class="fa fa-eye pe-1"></i>Voir etat<br></a></small></div>
             </div>
         </div>
-        <?php echo $propo['id'][$i] ?>
+
         <div class="col-md-2 inter">
             <div class="card-footer text-center"><small><a href="<?php echo site_url('welcome/accept/'.$propo['id'][$i]) ?>"><i class="fa fa-eye pe-1"></i>Accepter<br></a></small></div>
             <div class="card-footer text-center"><small><a href="<?php echo site_url('welcome/refuse/'.$propo['id'][$i]) ?>"><i class="fa fa-eye pe-1"></i>Refuser<br></a></small></div>

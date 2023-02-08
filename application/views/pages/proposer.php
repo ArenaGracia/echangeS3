@@ -7,7 +7,7 @@
 <!-- HEADER -->
 <div class="container py-5">
     <div class="intro">
-        <h2 class="text-center">Echange d` objet</h2>
+        <h2 class="text-center">Echange d' objet</h2>
         <p class="text-center">
             Taloha dia takalo no natao
             Taloha dia takalo no natao

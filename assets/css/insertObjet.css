@@ -1,3 +1,7 @@
+#profile{
+  margin-bottom: 5%;
+}
+
 .intro{
   margin-top: 2rem;
 }
@@ -68,6 +72,6 @@ div.avatar-bg {
   width: 300px;
   background-size: cover;
   border-radius: 50%;
-  overflow: scroll;
+  overflow: hidden;
 }
 

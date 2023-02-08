@@ -1,0 +1,28 @@
+.intro{
+    margin-block: 2rem;
+}
+
+.intro p{
+    color: gray;
+}
+
+#echange,#utilisateur{
+    margin-block: 3rem;
+}
+
+#myChart1,#myChart2{
+    margin-block: 3rem;
+}
+
+#echange table,#utilisateur table{
+    margin-inline: 20%;
+    margin-top: 10%;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 12pt;
+}
+th{
+    font-size: 14pt;
+    color: brown;
+}
+

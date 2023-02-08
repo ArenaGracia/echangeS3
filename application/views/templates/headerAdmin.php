@@ -17,7 +17,7 @@
                 <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
                     <img src="" alt="">
                 </span>
-                <span>Brand</span>
+                <span>Echange</span>
             </a>
             <div class="collapse navbar-collapse list" id="navcol-5">
                 <ul class="navbar-nav ms-auto">

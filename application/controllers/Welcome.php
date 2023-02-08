@@ -12,11 +12,13 @@ class Welcome extends CI_Controller {
     }
 	public function index()
 	{			
-		// $this->load->model('objet_models');
-		// $id=$this->session->userdata('id');
-		// $data['user']=$this->objet_models->getByUser($id);
-		// $this->load->view('templates/template',$data);
-		redirect("welcome/objetUser");
+		redirect('welcome/listeObjet');
+	}
+	public function listeObjet(){
+		$this->load->model('objet_models');
+		$id=$this->session->userdata('id');
+		$data['user']=$this->objet_models->getAll();
+		$this->load->view('pages/ObjectByUser',$data);
 	}
 	public function proposition(){
 		$this->load->model('Echange_models');
@@ -79,18 +81,6 @@ class Welcome extends CI_Controller {
 			$photo = $this->Objet_models->insert_upload("assets/img/categorie/",$_FILES['avatar-file']);
 			$this->Objet_models->insert_object($idU,$idC,$description,$prix,$photo);
         }
-        // redirect("welcomeAdmin/categorie");
 	}
-	// function upload_logo(){
-	// 	$ex=$_FILES['avatar-file']['name'];
-	// 	$epld=explode('.',$ex);
-	// 	$filename=date("mdyHis").".".$epld[1];
-	// 	$userfile_size=$_FILES['avatar-file']['size'];
-	// 	$imggtype=$_FILES['avatar-file']['type'];
-	// 	if(move_uploaded_file($_FILES['avatar-file']['tmp_name'],"assets/img/upload/TESTE.PNG"))
-	// 		{   
-	// 			echo $filename;
-	// 		}
-	// 	}
 }
 ?>

@@ -14,6 +14,20 @@
             return $result;
         }  
 
+        public function getAll(){
+            $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO";
+
+            $query=$this->db->query($sql);
+            $result=array();
+            $result['objet']=array();
+            $result['nom']=array();
+            foreach($query->result_array() as $row){
+                $result['objet'][]=$row;
+                $result['nom'][]=$this->objet_models->getOnePhoto($row['idO']);
+            }
+            return $result;
+        }  
+
         public function getByCat($idC){
             $sql="SELECT o.* FROM Objet o WHERE idC=%d";
             $sql=sprintf($sql,$idC);
@@ -28,7 +42,7 @@
         public function getOther($idU){
             $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE p.idU!=%d";
             $sql=sprintf($sql,$idU);
-            echo $sql;
+            // echo $sql;
             $query=$this->db->query($sql);
             $result=array();
             foreach($query->result_array() as $row){
@@ -66,8 +80,30 @@
             $this->Objet_models->insert_owner($idU,$id);
         }
 
+        public function getOnePhoto($id){
+            $sql="SELECT*FROM Photo WHERE idO=%d LIMIT 1";
+            $sql=sprintf($sql,$id);
+            $query=$this->db->query($sql);
+            $result=$query->row_array();
+            $image=$result['nom'];
+            return $result;            
+        }
+
         public function research($descri,$idC){
-            $sql="SELECT*FROM ";
+            $sql="";
+            if($idC==0){
+                $sql="SELECT*FROM Objet WHERE description like '%.$descri.%'";
+            }
+            else{
+                $sql="SELECT*FROM Objet WHERE description like '%.$descri.%' AND idC=%d";
+                $sql=sprintf($sql,$idC);
+            }           
+            $query=$this->db->query($sql);
+            $result=array();
+            foreach($query->result_array() as $row){
+                $result[]=$row;
+            }
+            return $result;
         }
 
         public function insererFichier(){
