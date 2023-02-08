@@ -1,6 +1,11 @@
 #histoire{
-  height: 90px;
+  height: 180px;
   overflow: scroll;
+}
+.historique img{
+  overflow: hidden;
+  width: 70%;
+  max-width: 400px;
 }
 
 img{

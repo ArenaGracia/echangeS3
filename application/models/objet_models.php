@@ -70,7 +70,7 @@
         }
 
         public function insert_owner($idU,$idO){
-            $sql="INSERT INTO Owners VALUES(%d,%d)";
+            $sql="INSERT INTO Owners VALUES(%d,%d,now())";
             $sql=$sql=sprintf($sql,$idU,$idO);
             $query=$this->db->query($sql);
         }

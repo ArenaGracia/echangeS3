@@ -5,11 +5,6 @@ INSERT INTO Utilisateur VALUES(null,'ANDRIANAIVOSOA','Johan Anjartiana','ETU0019
 
 INSERT INTO SuperUtilisateur VALUES(null,'RABENANAHARY','Rojo','rojo@gmail.com','rojo');
 
-DELETE FROM Proposition;
-DELETE FROM Photo;
-DELETE FROM Owners;
-DELETE FROM Objet;
-DELETE FROM Categorie;
 
 INSERT INTO Categorie VALUES(null,'Bijoux');
 INSERT INTO Categorie VALUES(null,'Cuisine');
@@ -20,16 +15,16 @@ INSERT INTO Categorie VALUES(null,'Outils bricolage');
 INSERT INTO Categorie VALUES(null,'Smartphone');
 
 
-INSERT INTO Objet VALUES(null,1,'Bague',200000);
-INSERT INTO Objet VALUES(null,1,'Boucles d` oreilles',200000);
-INSERT INTO Objet VALUES(null,1,'Bracelet',200000);
-INSERT INTO Objet VALUES(null,1,'Collier',200000);
+INSERT INTO Objet VALUES(null,1,'Bague',210000);
+INSERT INTO Objet VALUES(null,1,'Boucles d` oreilles',205000);
+INSERT INTO Objet VALUES(null,1,'Bracelet',220000);
+INSERT INTO Objet VALUES(null,1,'Collier',210000);
 INSERT INTO Objet VALUES(null,1,'Pendantif',200000);
 
-INSERT INTO Objet VALUES(null,2,'Expedition series Ex8',100000);
-INSERT INTO Objet VALUES(null,2,'Four tecnogas',100000);
-INSERT INTO Objet VALUES(null,2,'Four toaster',100000);
-INSERT INTO Objet VALUES(null,2,'Micro ondes',100000);
+INSERT INTO Objet VALUES(null,2,'Expedition series Ex8',105000);
+INSERT INTO Objet VALUES(null,2,'Four tecnogas',110000);
+INSERT INTO Objet VALUES(null,2,'Four toaster',115000);
+INSERT INTO Objet VALUES(null,2,'Micro ondes',120000);
 INSERT INTO Objet VALUES(null,2,'Mixeur Vivosana 5',100000);
 INSERT INTO Objet VALUES(null,2,'Samsumng Rs3000',100000);
 
@@ -95,7 +90,8 @@ INSERT INTO Photo VALUES(30,'agrafeusecarat.png');
 INSERT INTO Photo VALUES(31,'marteauperforateur.png');
 INSERT INTO Photo VALUES(32,'perceuse makita.png');
 INSERT INTO Photo VALUES(33,'perceuseford.png');
-INSERT INTO Photo VALUES(35,'aspirateur.png');
+INSERT INTO Photo VALUES(34,'aspirateur.png');
+INSERT INTO Photo VALUES(35,'ponceusemakita.png');
 INSERT INTO Photo VALUES(36,'ponceusemakita.png');
 
 INSERT INTO Owners VALUES(1,1,'2022-02-08 00:00:00');

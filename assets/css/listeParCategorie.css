@@ -5,3 +5,7 @@
     background-color: brown;
     color: white;
 }
+#myFoorm input,select{
+    border-radius: 12pt;
+  
+}

@@ -3,8 +3,15 @@
 }
 
 .scroleo{
-  height: 12rem;
+  height: 20rem;
   overflow: scroll;
+}
+.scroleo img{
+  width: 50%;
+  max-width: 100px;
+}
+.scroleo li{
+  min-height: 300px;
 }
 .media{
   height: 10rem;

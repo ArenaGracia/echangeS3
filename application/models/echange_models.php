@@ -47,20 +47,14 @@
         } 
 
         public function acceptChange($idP){
+            $this->load->model('objet_models');
             $data=$this->Echange_models->getPropositionById($idP);
             $idE=$data['idE'];
             $idR=$data['idR'];
-            $idObjet1=$data['idOe'];
-            $idObjet2=$data['idOr'];
-
-            $sql1="UPDATE Owners SET idU=%d WHERE idO=%d";
-            $sql1=sprintf($sql1,$idE,$idObjet2);
-            $query=$this->db->query($sql1);
-
-            $sql2="UPDATE Owners SET idU=%d WHERE idO=%d";
-            $sql2=sprintf($sql2,$idR,$idObjet1);    
-            $query=$this->db->query($sql2);
-
+            $idO1=$data['idOe'];
+            $idO2=$data['idOr'];
+            $this->objet_models->insert_owner($idE,$idO2);
+            $this->objet_models->insert_owner($idR,$idO1);
             $sql3="INSERT INTO Accepter VALUES(%d)";
             $sql3=sprintf($sql3,$idP);
             $query=$this->db->query($sql3);

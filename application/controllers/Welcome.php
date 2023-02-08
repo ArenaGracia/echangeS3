@@ -19,8 +19,7 @@ class Welcome extends CI_Controller {
 		$nomCat=$this->input->get("nomC");
 		$idC=$this->input->get("idCat");
 		$data['objet']=$this->objet_models->research($nomCat,$idC);
-		$this->load->view('pages/searchObjet',$data);
-		
+		$this->load->view('pages/searchObjet',$data);	
 	}
 	public function listeObjet(){
 		$this->load->model('objet_models');
@@ -126,6 +125,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('categories_models');
 		$idO=$_GET['idO'];
 		$data['history'] = $this->objet_models->getHistory($idO);
+		// var_dump($data['history']);
 		$data['photo'] = $this->objet_models->getOnePhoto($idO);
 		$this->load->view('pages/historiqueAppartenance.php',$data);
 	}
