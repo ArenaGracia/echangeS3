@@ -27,15 +27,6 @@
             $nom=$result['nom'];
             return $nom;
         }
-        
-        public function getById(){
-            $sql="SELECT * FROM Categorie";
-            $query=$this->db->query($sql);
-            $result=array();
-            foreach($query->result_array() as $row){
-                $result[]=$row;
-            }
-            return $result;
-        } 
+
     }
 ?>

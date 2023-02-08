@@ -24,10 +24,10 @@
         } 
 
         public function getProposition($idU){
-            $this->load->model('login_models');
-            $this->load->model('objet_models');
+            $this->load->model('Login_models');
+            $this->load->model('Objet_models');
 
-            $data=$this->echange_models->getPropositionByIdUser($idU);
+            $data=$this->Echange_models->getPropositionByIdUser($idU);
             $result=array();
             $result['id']=array();
             $result['envoyeur']=array();
@@ -37,17 +37,17 @@
 
             for($i=0;$i<count($data);$i++){
                 $result['id'][]=$data[$i]['idP'];
-                $result['envoyeur'][]=$this->login_models->getById($data[$i]['idE']);
-                $result['receveur'][]=$this->login_models->getById($data[$i]['idR']);
-                $result['objet1'][]=$this->objet_models->getById($data[$i]['idOe']);
-                $result['objet2'][]=$this->objet_models->getById($data[$i]['idOr']);
+                $result['envoyeur'][]=$this->Login_models->getById($data[$i]['idE']);
+                $result['receveur'][]=$this->Login_models->getById($data[$i]['idR']);
+                $result['objet1'][]=$this->Objet_models->getById($data[$i]['idOe']);
+                $result['objet2'][]=$this->Objet_models->getById($data[$i]['idOr']);
             }
 
             return $result;
         } 
 
         public function acceptChange($idP){
-            $data=$this->echange_models->getPropositionById($idP);
+            $data=$this->Echange_models->getPropositionById($idP);
             $idE=$data['idE'];
             $idR=$data['idR'];
             $idObjet1=$data['idOe'];
@@ -67,7 +67,7 @@
         }
 
         public function refuseChange($idP){
-            $data=$this->echange_models->getPropositionById($idP);
+            $data=$this->Echange_models->getPropositionById($idP);
             $sql3="INSERT INTO Refus VALUES(%d)";
             $sql3=sprintf($sql3,$idP);
             $query=$this->db->query($sql3);
@@ -78,6 +78,14 @@
             $sql=sprintf($sql,$idE,$idR,$idOe,$idOr);
             echo $sql;
             $query=$this->db->query($sql);
+        }
+
+        public function getTotalEchange(){
+            $sql="SELECT count(*) isa FROM accepter";
+            $query=$this->db->query($sql);
+            $result=$query->row_array();
+            $nb=$result['isa'];
+            return $nb;
         }
     }
 ?>

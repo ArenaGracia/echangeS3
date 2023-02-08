@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>EchangeObjet</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    
+    <link rel="stylesheet" href="assets/css/statistiques.css">
+</head>
+
+<div class="container-fluid contenue">
+	<div class="intro">
+		<h2 class="text-center">Statistiques</h2>
+		<p class="text-center">
+			Evolution du nombre d' utilisateur inscrit sur le site
+		</p>
+	</div>
+	
+	<div class="row" id="utilisateur">
+
+		<h3 class="offset-md-1">I. Nombre d' utilisateur inscrit sur le site</h3 class="offset-md-1">
+		<div class="col-md-5">
+			<table class="table">
+				<tr class="row">
+					<th class="col-md-6">Date debut</th>
+					<th class="col-md-6">Date fin</th>
+				</tr>				
+				<tr class="row">
+					<td class="col-md-6"><input type="date"></td>
+					<td class="col-md-6"><input type="date"></td>
+				</tr>
+				<tr class="row">
+					<td class="col-md-6" colspan="2">TOTAL DES UTILISATEURS</td>
+					<td class="col-md-6">123</td>
+				</tr>
+				<tr class="row">
+					<td class="col-md-6" colspan="2">COULEUR</td>
+					<td class="col-md-6"><input type="color" name="color" id="c1"></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="col-md-5 offset-md-1">
+			<canvas id="myChart1" class=""></canvas>
+			<script  type="text/javascript" src="assets/js/Chart.js"></script>
+			<script>
+				/* Couleur de courbe */
+				var getColor = document.getElementById('c1');
+				/* Axe des abscisses */
+				var xValues = ["Jan","Feb","Mar","Apr","Mai","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+				/* Ax des ordonnees */
+				var yValues = [-50,16,25,10,-20,-30,-10,8,10,12,12,12];
+
+				new Chart("myChart1", {
+							type: "line",
+					data: {
+						labels: xValues,
+						datasets: [{
+							fill: false,
+							pointRadius: 2,
+							borderColor: getColor,
+							data: yValues
+						}]
+					},
+					options: {
+						legend: {display: false},
+						scales: {
+							yAxes: [{ticks: {min: -60, max:80}}],
+						}
+					}
+				});
+			</script>
+		</div>
+	</div>
+
+	<!--------------------------- NOMBRE ECHANGE EFFECTUE  -------------------------->
+	<div class="row" id="echange">
+		
+		<h3 class="offset-md-1">II. Nombre d' echange effectue</h3 class="offset-md-1">
+		<div class="col-md-5">
+			<table class="table">
+				<tr class="row">
+					<th class="col-md-6">Date debut</th>
+					<th class="col-md-6">Date fin</th>
+				</tr>				
+				<tr class="row">
+					<td class="col-md-6"><input type="date"></td>
+					<td class="col-md-6"><input type="date"></td>
+				</tr>
+				<tr class="row">
+					<td class="col-md-6" colspan="2">TOTAL DES UTILISATEURS</td>
+					<td class="col-md-6">123</td>
+				</tr>
+				<tr class="row">
+					<td class="col-md-6" colspan="2">COULEUR</td>
+					<td class="col-md-6"><input type="color" name="color" id="c2"></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="col-md-5 offset-md-1">
+			<canvas id="myChart2" class=""></canvas>
+			<script  type="text/javascript" src="assets/js/Chart.js"></script>
+			<script>
+				/* Couleur de courbe */
+				var getColor = document.getElementById('c2');
+				/* Axe des abscisses */
+				var xValues = ["Jan","Feb","Mar","Apr","Mai","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+				/* Ax des ordonnees */
+				var yValues = [-50,16,25,10,-20,-30,-10,8,10,12,12,12];
+
+				new Chart("myChart2", {
+							type: "line",
+					data: {
+						labels: xValues,
+						datasets: [{
+							fill: false,
+							pointRadius: 2,
+							borderColor: getColor,
+							data: yValues
+						}]
+					},
+					options: {
+						legend: {display: false},
+						scales: {
+							yAxes: [{ticks: {min: -60, max:80}}],
+						}
+					}
+				});
+			</script>
+		</div>
+	</div>
+	<!--------------------------- NOMBRE ECHANGE EFFECTUE  -------------------------->
+	
+</div>
+
+
+</body>
+</html>

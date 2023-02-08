@@ -24,6 +24,14 @@
             $result=$query->row_array();
             // echo $sql;
             return $result;
-        }        
+        }   
+        
+        public function getTotalUser(){
+            $sql="SELECT count(*) isa FROM utilisateur";
+            $query=$this->db->query($sql);
+            $result=$query->row_array();
+            $nb=$result['isa'];
+            return $nb;
+        }
     }
 ?>

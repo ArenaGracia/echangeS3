@@ -1,6 +1,6 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
-    class admin_models extends CI_Model{
+    class Admin_models extends CI_Model{
         public function getOneAdmin(){
             $sql="SELECT*FROM SuperUtilisateur Limit 1";
             $query=$this->db->query($sql);

@@ -47,25 +47,60 @@
 
         public function insert_photo($id,$p){
             $sql="INSERT INTO Photo VALUES(%d,%s)";
-            $sql=$sql=sprintf($sql,$this->db->escape($id),$this->db->escape($p));
+            $sql=$sql=sprintf($sql,$id,$this->db->escape($p));
             $query=$this->db->query($sql);
         }
 
-        public function insert_owner($idU,$idP){
-            $sql="INSERT INTO Owner VALUES(%d,%d)";
-            $sql=$sql=sprintf($sql,$this->db->escape($idU),$this->db->escape($idO));
+        public function insert_owner($idU,$idO){
+            $sql="INSERT INTO Owners VALUES(%d,%d)";
+            $sql=$sql=sprintf($sql,$idU,$idO);
             $query=$this->db->query($sql);
         }
 
         public function insert_object($idU,$idC,$descri,$prix,$photo){
-            $sql="INSERT INTO Objet VALUES(null,%d,%s,%d) returning idO";
-            $sql=$sql=sprintf($sql,$this->$idC,$this->db->escape($descri),$this->db->escape($prix));
+            $sql="INSERT INTO Objet VALUES(null,%d,%s,%d)";
+            $sql = sprintf($sql,$idC,$this->db->escape($descri),$prix);
             $query=$this->db->query($sql);
-            $id=$query->row_array();
-            for($i=0;$i<count($photo);$i++){
-                $this->objet_models->insert_photo($id,$photo[$i]);
-            }
-            $this->objet_models->insert_owner($id,$idU);
+            $id=$this->db->insert_id();
+            $this->Objet_models->insert_photo($id,$photo);
+            $this->Objet_models->insert_owner($idU,$id);
         }
-    }
+
+        public function research($descri,$idC){
+            $sql="SELECT*FROM ";
+        }
+
+        public function insererFichier(){
+            $this->load->library('upload');
+        }
+
+        public function insert_upload($dossier,$img){
+            $fichier = basename($img['name']);
+            $taille_maxi = 1000000;
+            $taille = filesize($img['tmp_name']);
+            $extensions = array('.png', '.gif', '.jpg', '.jpeg'); 
+            $extension = strrchr($img['name'], '.'); 
+            //Début des vérifications de sécurité...
+            if(!$this->is_in_array($extension, $extensions))$erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc';
+            if($taille>$taille_maxi)$erreur = 'Le fichier est trop gros...';
+        
+            //S'il n'y a pas d'erreur, on upload
+            if(!isset($erreur)){     //On formate le nom du fichier ici...  
+                $fichier = strtr($fichier,'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');    
+                $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+                if(move_uploaded_file($img['tmp_name'],$dossier.$fichier))echo 'Upload effectué avec succès !';   
+                else echo 'Echec de l\'upload !';    
+            } else {   
+                echo $erreur; 
+            } 
+            return $fichier;
+        }
+        public function is_in_array($extension,$extensions){
+            foreach($extensions as $temp){
+                if(strcmp(strtolower($extension),$temp))return true;
+            }
+            return false;
+        }
+}
 ?>

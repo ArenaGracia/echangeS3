@@ -19,9 +19,9 @@ class Welcome extends CI_Controller {
 		redirect("welcome/objetUser");
 	}
 	public function proposition(){
-		$this->load->model('echange_models');
+		$this->load->model('Echange_models');
 		$id=$this->session->userdata('id');
-		$data['propo']=$this->echange_models->getProposition($id);
+		$data['propo']=$this->Echange_models->getProposition($id);
 		$this->load->view("pages/listProposition",$data);
 	}	
 	public function objet($id='1'){
@@ -38,13 +38,13 @@ class Welcome extends CI_Controller {
 		$this->load->view("pages/proposer",$data1);
 	}
 	public function accept($id='1'){
-		$this->load->model('echange_models');
-		$this->echange_models->acceptChange($id);
+		$this->load->model('Echange_models');
+		$this->Echange_models->acceptChange($id);
 		redirect('welcome/proposition');
 	}
 	public function refuse($id='1'){
-		$this->load->model('echange_models');
-		$this->echange_models->refuseChange($id);
+		$this->load->model('Echange_models');
+		$this->Echange_models->refuseChange($id);
 		redirect('welcome/proposition');
 	}
 	public function insertPropo(){
@@ -52,12 +52,45 @@ class Welcome extends CI_Controller {
 		$idR=$this->input->get('idR');
 		$idOe=$this->input->get('idOe');
 		$idOr=$this->input->get('idOr');
-		$this->load->model('echange_models');
-		if($idE==null || $idE==0  || $idR==null || $idR==0 || $idOe==null || $iOe==0 || $idOr==null || $idE==0){
+		$this->load->model('Echange_models');
+		if($idE==null || $idE==0  || $idR==null || $idR==0 || $idOe==null || $idOe==0 || $idOr==null || $idE==0){
 			redirect('welcome/objetUser');
 		}
-		$this->echange_models->insert_proposition($idE,$idR,$idOe,$idOr);
+		$this->Echange_models->insert_proposition($idE,$idR,$idOe,$idOr);
 		redirect('welcome/objetUser');
 	}
+	public function newObject(){
+		$this->load->model('Categories_models');
+		$data['categories']=$this->Categories_models->getALL();
+		$this->load->view("pages/insertObjet",$data);	
+	}
+	public function addObjet(){
+		$this->load->model('Objet_models');
+		
+        $idC=$this->input->post("idC");
+        $prix=$this->input->post("prix");
+        $description=$this->input->post("description");
+		
+		$idU=$this->session->userdata('id');
+		$idC = trim($idC);
+		$prix = trim($prix);
+		$description = trim($description);
+        if(strlen($idC)!=0 && strlen($prix)!=0 && strlen($description)!=0){
+			$photo = $this->Objet_models->insert_upload("assets/img/categorie/",$_FILES['avatar-file']);
+			$this->Objet_models->insert_object($idU,$idC,$description,$prix,$photo);
+        }
+        // redirect("welcomeAdmin/categorie");
+	}
+	// function upload_logo(){
+	// 	$ex=$_FILES['avatar-file']['name'];
+	// 	$epld=explode('.',$ex);
+	// 	$filename=date("mdyHis").".".$epld[1];
+	// 	$userfile_size=$_FILES['avatar-file']['size'];
+	// 	$imggtype=$_FILES['avatar-file']['type'];
+	// 	if(move_uploaded_file($_FILES['avatar-file']['tmp_name'],"assets/img/upload/TESTE.PNG"))
+	// 		{   
+	// 			echo $filename;
+	// 		}
+	// 	}
 }
 ?>

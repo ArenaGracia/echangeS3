@@ -37,7 +37,7 @@
                                             <hr>
                                             <hr>
                                         </form>
-                                        <div class="text-center"><a class="small" href="forgot-password.html" style="color: #01703E;">Super utilisateur</a></div>
+                                        <div class="text-center"><a class="small" style="color: #01703E;"  href="<?php echo site_url('login/admin'); ?>">Super utilisateur</a></div>
                                     </div>
                                 </div>
                             </div>
