@@ -8,8 +8,11 @@
 
             $query=$this->db->query($sql);
             $result=array();
+            $result['objet']=array();
+            $result['nom']=array();
             foreach($query->result_array() as $row){
-                $result[]=$row;
+                $result['objet'][]=$row;
+                $result['nom'][]=$this->objet_models->getOnePhoto($row['idO']);
             }
             return $result;
         }  
@@ -86,22 +89,43 @@
             $query=$this->db->query($sql);
             $result=$query->row_array();
             $image=$result['nom'];
-            return $result;            
+            return $image;            
         }
 
         public function research($descri,$idC){
             $sql="";
             if($idC==0){
-                $sql="SELECT*FROM Objet WHERE description like '%.$descri.%'";
+                $sql="SELECT  o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE description like '%$descri%'";
             }
             else{
-                $sql="SELECT*FROM Objet WHERE description like '%.$descri.%' AND idC=%d";
+                $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE description like '%$descri%' AND idC=%d";
                 $sql=sprintf($sql,$idC);
-            }           
+            }     
+            // echo $sql;      
             $query=$this->db->query($sql);
             $result=array();
             foreach($query->result_array() as $row){
                 $result[]=$row;
+            }
+            return $result;
+        }
+
+        public function getByPourcentage($idUser,$idO,$pourcentage){
+            $valeurs=$pourcentage/100;
+            $objet1=$this->objet_models->getById($idO);
+            $val=$objet1['prix']*$valeurs;
+            $valeurMin=$objet1['prix']-$val;
+            $valeurMax=$objet1['prix']+$val;
+            $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE o.prix>=%d And o.prix<=%d And p.idU!=%d";
+            $sql=sprintf($sql,$valeurMin,$valeurMax,$idUser);
+            // echo $sql;
+            $query=$this->db->query($sql);
+            $result=array();
+            $result['objet']=array();
+            $result['nom']=array();
+            foreach($query->result_array() as $row){
+                $result['objet'][]=$row;
+                $result['nom'][]=$this->objet_models->getOnePhoto($row['idO']);
             }
             return $result;
         }

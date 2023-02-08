@@ -14,10 +14,28 @@ class Welcome extends CI_Controller {
 	{			
 		redirect('welcome/listeObjet');
 	}
+	public function search(){
+		$this->load->model('objet_models');
+		$nomCat=$this->input->get("nomC");
+		$idC=$this->input->get("idCat");
+		$data['objet']=$this->objet_models->research($nomCat,$idC);
+		$this->load->view('pages/searchObjet',$data);
+		
+	}
 	public function listeObjet(){
 		$this->load->model('objet_models');
+		$this->load->model('categories_models');
 		$id=$this->session->userdata('id');
 		$data['user']=$this->objet_models->getAll();
+		$data['cat']=$this->categories_models->getAll();
+		$this->load->view('pages/ObjectAll',$data);
+	}
+	public function listeObjetByUser(){
+		$this->load->model('objet_models');
+		$this->load->model('categories_models');
+		$id=$this->session->userdata('id');
+		$data['user']=$this->objet_models->getByUser($id);
+		$data['cat']=$this->categories_models->getAll();
 		$this->load->view('pages/ObjectByUser',$data);
 	}
 	public function proposition(){
@@ -59,7 +77,7 @@ class Welcome extends CI_Controller {
 			redirect('welcome/objetUser');
 		}
 		$this->Echange_models->insert_proposition($idE,$idR,$idOe,$idOr);
-		redirect('welcome/objetUser');
+		redirect('welcome/listeObjet');
 	}
 	public function newObject(){
 		$this->load->model('Categories_models');
@@ -81,6 +99,23 @@ class Welcome extends CI_Controller {
 			$photo = $this->Objet_models->insert_upload("assets/img/categorie/",$_FILES['avatar-file']);
 			$this->Objet_models->insert_object($idU,$idC,$description,$prix,$photo);
         }
+        redirect("welcome/listeObjet");
+	}
+	public function pource10($idO=''){
+		$idU=$this->session->userdata('id');
+		$this->load->model('objet_models');
+		$data['rep']=$this->objet_models->getByPourcentage($idU,$idO,10);
+		$data['idO']=$idO;
+		$this->load->view('pages/Echanges',$data);
+	}
+
+	public function pource20($idO=''){
+		$idU=$this->session->userdata('id');
+		$this->load->model('objet_models');
+		$data['rep']=$this->objet_models->getByPourcentage($idU,$idO,20);
+		$data['idO']=$idO;
+		$this->load->view('pages/Echanges',$data);
+
 	}
 }
 ?>

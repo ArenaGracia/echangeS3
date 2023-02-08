@@ -7,7 +7,7 @@
     <div class="article-list">
         <div class="container">
             <div class="intro">
-                <h2 class="text-center">Liste de vos objets</h2>
+                <h2 class="text-center">Liste des objets</h2>
                 <form action="<?php echo site_url('welcome/search') ?>" id="myFoorm">
                     <input type="text" name="nomC" required>
                     <select name="idCat">
@@ -27,10 +27,10 @@
                     <p class="description">
                         <?php echo $user['objet'][$i]['prix'] ?> Ar
                     </p>
-                    <p class="description">
-                        <a href="<?php echo site_url('welcome/pource10/'.$user['objet'][$i]['idO']) ?>">+/-10%</a>
-                        <a href="<?php echo site_url('welcome/pource20/'.$user['objet'][$i]['idO']) ?>">+/-20%</a>
-                    </p>
+                    <?php if($user['objet'][$i]['idU']==$this->session->userdata('id')) { ?>
+                        <a href="<?php echo site_url('welcome/modifierObjet')?>">Modifier</a>
+                        <a href="<?php echo site_url('welcome/suppObjet')?>">Supprimer</a>
+                    <?php } ?>
                 </div>
                 <?php } ?>
             </div>
