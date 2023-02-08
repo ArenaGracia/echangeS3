@@ -12,9 +12,16 @@
 	</div>
 	
 	<div class="row" id="utilisateur">
-
-		<h3 class="offset-md-1">I. Nombre d' utilisateur inscrit sur le site : <?php echo $user ?> </h3 class="offset-md-1">		
-		<h3 class="offset-md-1">II. Nombre d' echange effectue : <?php echo $change ?> </h3 class="offset-md-1">
+		<table class="table">
+			<tr>
+				<th class="offset-md-1">I. Nombre d' utilisateur inscrit sur le site :</th> 
+				<td><?php echo $user ?></td>		
+			</tr>
+			<tr>
+				<th class="offset-md-1">II. Nombre d' echange effectue : </th>
+				<td><?php echo $change ?></td>
+			</tr>
+		</table>
 	</div>
 
 	

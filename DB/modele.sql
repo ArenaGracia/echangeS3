@@ -1,5 +1,3 @@
--- source /home/johan/Documents/ROJO/DB/modele.sql
-
 DROP DATABASE echange;
 CREATE DATABASE echange;
 USE echange;
@@ -70,4 +68,6 @@ CREATE TABLE Refus(
     FOREIGN KEY (idP) REFERENCES Proposition(idP)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE Owners ADD daty DATE NOT NULL;
+DELETE FROM Owners;
 

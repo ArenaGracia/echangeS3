@@ -4,7 +4,7 @@
         public function getByUser($idU){
             $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE p.idU=%d";
             $sql=sprintf($sql,$idU);
-            // echo $sql;
+            // echo $sql."<br />";
 
             $query=$this->db->query($sql);
             $result=array();
@@ -14,6 +14,19 @@
                 $result['objet'][]=$row;
                 $result['nom'][]=$this->objet_models->getOnePhoto($row['idO']);
             }
+            return $result;
+        }  
+        public function getOther($idU){
+            $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE p.idU!=%d";
+            $sql=sprintf($sql,$idU);
+            // echo $sql;
+            $query=$this->db->query($sql);
+            $result=array();
+            foreach($query->result_array() as $row){
+                $result['objet'][]=$row;
+                $result['nom'][]=$this->objet_models->getOnePhoto($row['idO']);
+            }
+            // var_dump($result);
             return $result;
         }  
 
@@ -34,18 +47,6 @@
         public function getByCat($idC){
             $sql="SELECT o.* FROM Objet o WHERE idC=%d";
             $sql=sprintf($sql,$idC);
-            $query=$this->db->query($sql);
-            $result=array();
-            foreach($query->result_array() as $row){
-                $result[]=$row;
-            }
-            return $result;
-        }  
-
-        public function getOther($idU){
-            $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE p.idU!=%d";
-            $sql=sprintf($sql,$idU);
-            // echo $sql;
             $query=$this->db->query($sql);
             $result=array();
             foreach($query->result_array() as $row){
@@ -87,8 +88,10 @@
             $sql="SELECT*FROM Photo WHERE idO=%d LIMIT 1";
             $sql=sprintf($sql,$id);
             $query=$this->db->query($sql);
-            $result=$query->row_array();
-            $image=$result['nom'];
+            $image = "";
+            foreach($query->result_array() as $row){
+                $image=$row['nom'];
+            }
             return $image;            
         }
 
@@ -101,13 +104,20 @@
                 $sql="SELECT o.*,p.idU FROM Objet o JOIN Owners p ON p.idO=o.idO WHERE description like '%$descri%' AND idC=%d";
                 $sql=sprintf($sql,$idC);
             }     
-            // echo $sql;      
             $query=$this->db->query($sql);
             $result=array();
+            $result['objet']=array();
+            $result['nom']=array();
             foreach($query->result_array() as $row){
-                $result[]=$row;
+                $result['objet'][]=$row;
+                $result['nom'][]=$this->objet_models->getOnePhoto($row['idO']);
             }
             return $result;
+        }
+        public function suppObjet($idO){
+            $sql="DELETE FROM Objet WHERE idO=%d ON DELETE CASCADE";
+            $sql=sprintf($sql,$idO);
+            echo $sql;
         }
 
         public function getByPourcentage($idUser,$idO,$pourcentage){
@@ -122,9 +132,13 @@
             $query=$this->db->query($sql);
             $result=array();
             $result['objet']=array();
+            $result['pourcentage']=array();
             $result['nom']=array();
             foreach($query->result_array() as $row){
                 $result['objet'][]=$row;
+                $var=(int)((($objet1['prix']-$row['prix'])/($objet1['prix']))*10000);
+                $var = ((float)$var)/100;
+                $result['pourcentage'][]=$var;
                 $result['nom'][]=$this->objet_models->getOnePhoto($row['idO']);
             }
             return $result;
@@ -161,6 +175,17 @@
                 if(strcmp(strtolower($extension),$temp))return true;
             }
             return false;
+        }
+        public function getHistory($idO){
+            $sql = "SELECT O.idO,O.daty,U.* FROM Owners O JOIN Utilisateur U ON U.idU=O.idU
+             WHERE O.idO=%d ORDER BY O.daty ASC";
+            $sql = sprintf($sql,$idO);
+            $query=$this->db->query($sql);
+            $result=array();
+            foreach($query->result_array() as $row){
+                $result[]=$row;
+            }
+            return $result;
         }
 }
 ?>

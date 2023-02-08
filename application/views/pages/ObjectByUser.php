@@ -22,7 +22,9 @@
             <div class="row articles">
                 <?php for($i=0;$i<count($user['objet']);$i++){ ?>
                 <div class="col-sm-6 col-md-4 item">
-                    <div class="zoomin frame" style="width: 100%;height: 236px;"><img style="width: 100%;height: 236px;" src="<?php echo site_url('assets/img/'.$user['nom'][$i]) ?>"></div>
+                    <div class="zoomin frame" style="width: 100%;height: 236px;">
+                        <img style="width: 100%;height: 236px;" src="<?php echo site_url('assets/img/Objet/'.$user['nom'][$i]) ?>">
+                    </div>
                     <h3 class="name"><?php echo $user['objet'][$i]['description'] ?></h3>
                     <p class="description">
                         <?php echo $user['objet'][$i]['prix'] ?> Ar
@@ -30,6 +32,10 @@
                     <p class="description">
                         <a href="<?php echo site_url('welcome/pource10/'.$user['objet'][$i]['idO']) ?>">+/-10%</a>
                         <a href="<?php echo site_url('welcome/pource20/'.$user['objet'][$i]['idO']) ?>">+/-20%</a>
+                    </p>
+                    <p class="description">
+                        <a href="<?php echo site_url('welcome/modifierObjet/'.$user['objet'][$i]['idO'])?>">Modifier</a>
+                        <a href="<?php echo site_url('welcome/suppObjet/'.$user['objet'][$i]['idO'])?>">Supprimer</a>
                     </p>
                 </div>
                 <?php } ?>

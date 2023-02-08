@@ -1,6 +1,5 @@
 <!-- IMPORTATION -->
     <link rel="stylesheet" href="<?php echo site_url('assets/css/proposer.css')?>">
-    <link rel="stylesheet" href="<?php echo site_url('assets/css/proposer.css')?>">
 <!-- IMPORTATION -->
 <!-- HEADER -->
 <?php $this->load->view('templates/header'); ?>
@@ -21,22 +20,22 @@
         <!-- List group-->
         <ul class="list-group shadow scroleo">
 
-            <?php for($i=0;$i<count($objet);$i++) { ?>
+            <?php for($i=0;$i<count($objet['objet']);$i++) { ?>
                 <li class="list-group-item">
-                <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                    <div class="media-body order-2 order-lg-1">
-                        <h5 class="mt-0 font-weight-bold mb-2"><?php echo $objet[$i]['description'] ?></h5>
-                        <div class="d-flex align-items-center justify-content-between mt-1">
-                            <h6 class="font-weight-bold my-2"><?php echo $objet[$i]['prix'] ?></h6>
+                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                        <div class="media-body order-2 order-lg-1">
+                            <h5 class="mt-0 font-weight-bold mb-2"><?php echo $objet['objet'][$i]['description'] ?></h5>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <h6 class="font-weight-bold my-2"><?php echo $objet['objet'][$i]['prix'] ?></h6>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="<?php echo site_url("assets/img/Objet/".$objet['nom'][$i]); ?>" alt="Generic placeholder image">
+                            <label for="" class="etiquette">Choisir</label>
+                            <input type="hidden" name="idE" value="<?php echo $objet['objet'][$i]['idU'] ?>" />
+                            <input type="checkbox" name="idOe" value="<?php echo $objet['objet'][$i]['idO'] ?>" />
                         </div>
                     </div>
-                    <span>
-                        <img src="" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-                        <label for="" class="etiquette">Choisir</label>
-                        <input type="hidden" name="idE" value="<?php echo $objet[$i]['idU'] ?>" />
-                        <input type="checkbox" name="idOe" value="<?php echo $objet[$i]['idO'] ?>" />
-                    </span>
-                </div>
                 </li>
             <?php } ?>
             <!-- End -->
@@ -52,24 +51,24 @@
 
             <ul class="list-group shadow scroleo">
                 
-                <?php for($i=0;$i<count($autre);$i++) { ?>
+                <?php for($i=0;$i<count($autre['objet']);$i++) { ?>
                     <li class="list-group-item">
                         <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                             <div class="media-body order-2 order-lg-1">
-                            <h5 class="mt-0 font-weight-bold mb-2"><?php echo $autre[$i]['description'] ?></h5>
+                            <h5 class="mt-0 font-weight-bold mb-2"><?php echo $autre['objet'][$i]['description'] ?></h5>
                             <p class="font-italic text-muted mb-0 small">
                                 Description
                             </p>
                             <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6 class="font-weight-bold my-2"><?php echo $autre[$i]['prix'] ?> Ar</h6>
+                                <h6 class="font-weight-bold my-2"><?php echo $autre['objet'][$i]['prix'] ?> Ar</h6>
                             </div>
                         </div>
-                        <span>
-                            <img src="" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                        <div>
+                            <img src="<?php echo site_url("assets/img/Objet/".$autre['nom'][$i]); ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
                             <label for="" class="etiquette">Choisir</label>
-                            <input type="hidden" name="idR" value="<?php echo $autre[$i]['idU'] ?>" />
-                            <input type="checkbox" name="idOr" value="<?php echo $autre[$i]['idO'] ?>"/>
-                        </span>
+                            <input type="hidden" name="idR" value="<?php echo $autre['objet'][$i]['idU'] ?>" />
+                            <input type="checkbox" name="idOr" value="<?php echo $autre['objet'][$i]['idO'] ?>"/>
+                        </div>
                     </div>
                 </li>
                 <?php } ?>

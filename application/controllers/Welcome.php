@@ -96,7 +96,7 @@ class Welcome extends CI_Controller {
 		$prix = trim($prix);
 		$description = trim($description);
         if(strlen($idC)!=0 && strlen($prix)!=0 && strlen($description)!=0){
-			$photo = $this->Objet_models->insert_upload("assets/img/categorie/",$_FILES['avatar-file']);
+			$photo = $this->Objet_models->insert_upload("assets/img/Objet/",$_FILES['avatar-file']);
 			$this->Objet_models->insert_object($idU,$idC,$description,$prix,$photo);
         }
         redirect("welcome/listeObjet");
@@ -115,7 +115,19 @@ class Welcome extends CI_Controller {
 		$data['rep']=$this->objet_models->getByPourcentage($idU,$idO,20);
 		$data['idO']=$idO;
 		$this->load->view('pages/Echanges',$data);
-
+	}
+	public function suppObjet($idO=''){
+		$this->load->model('objet_models');
+		$this->objet_models->suppObjet($idO);
+		// redirect("welcome/listeObjetByUser");
+	}
+	public function historique(){
+		$this->load->model('objet_models');
+		$this->load->model('categories_models');
+		$idO=$_GET['idO'];
+		$data['history'] = $this->objet_models->getHistory($idO);
+		$data['photo'] = $this->objet_models->getOnePhoto($idO);
+		$this->load->view('pages/historiqueAppartenance.php',$data);
 	}
 }
 ?>

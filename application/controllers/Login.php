@@ -15,7 +15,7 @@ class Login extends CI_Controller {
 	public function admin()
 	{
         $this->load->model('Admin_models');
-        $data['admin']=$this->admin_models->getOneAdmin();
+        $data['admin']=$this->Admin_models->getOneAdmin();
 		$this->load->view('pages/loginAdmin',$data);
 	}
     
@@ -24,7 +24,7 @@ class Login extends CI_Controller {
         $this->load->helper('email_helper');
 		$email=$this->input->post('email');
 		$pwd=$this->input->post('pwd');
-        $result=$this->admin_models->verify_Login($email,$pwd);
+        $result=$this->Admin_models->verify_Login($email,$pwd);
 
         if(valid_email($email) && $result!=null){
             $this->session->set_userdata('idAdmin', $result['idSu']);

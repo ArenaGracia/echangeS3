@@ -35,9 +35,9 @@
                             <tbody class="text-center">
                                 <?php for($i=0;$i<count($info);$i++) { ?>
                                     <tr>
-                                        <td><?php echo $info[$i]['nom'] ?></td>
-                                      
-                                        <td class="text-center align-middle" style="max-height: 60px;height: 60px;"><a class="btn btnMaterial btn-flat primary semicircle" role="button" href="<?php echo site_url("welcomeAdmin/objetByCat/".$info[$i]['idC']) ?>"><i class="far fa-eye"></i></a><a class="btn btnMaterial btn-flat success semicircle" role="button" href="#"><i class="fas fa-pen"></i></a><a class="btn btnMaterial btn-flat accent btnNoBorders checkboxHover" role="button" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#delete-modal" href="#"><i class="fas fa-trash btnNoBorders" style="color: #DC3545;"></i></a></td>
+                                        <td><?php echo $info[$i]['nom'] ?></td>  
+                                        <td class="text-center align-middle" style="max-height: 60px;height: 60px;">
+                                            <a class="btn btnMaterial btn-flat primary semicircle" role="button" href="<?php echo site_url("welcomeAdmin/objetByCat/".$info[$i]['idC']) ?>"><i class="far fa-eye"></i></a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

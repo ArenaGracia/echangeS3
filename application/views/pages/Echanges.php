@@ -23,10 +23,13 @@
                 <div class="row articles">
                     <?php for($i=0;$i<count($rep['objet']);$i++){ ?>
                     <div class="col-sm-6 col-md-4 item">
-                        <div class="zoomin frame" style="width: 100%;height: 236px;"><img style="width: 100%;height: 236px;" src="<?php echo site_url('assets/img/'.$rep['nom'][$i]) ?>"></div>
+                        <div class="zoomin frame" style="width: 100%;height: 236px;"><img style="width: 100%;height: 236px;" src="<?php echo site_url('assets/img/Objet/'.$rep['nom'][$i]) ?>"></div>
                         <h3 class="name"><?php echo $rep['objet'][$i]['description'] ?></h3>
                         <p class="description">
                             <?php echo $rep['objet'][$i]['prix'] ?> Ar
+                        </p>
+                        <p class="description">
+                            <?php echo $rep['pourcentage'][$i] ?> %
                         </p>
                         <p class="description">
                             <form action="<?php echo site_url("welcome/insertPropo") ?>" method="get">
