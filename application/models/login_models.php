@@ -27,7 +27,7 @@
         }   
         
         public function getTotalUser(){
-            $sql="SELECT count(*) isa FROM utilisateur";
+            $sql="SELECT count(*) isa FROM Utilisateur";
             $query=$this->db->query($sql);
             $result=$query->row_array();
             $nb=$result['isa'];
